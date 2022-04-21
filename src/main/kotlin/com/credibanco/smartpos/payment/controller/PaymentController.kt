@@ -14,15 +14,9 @@ import java.util.*
 @RestController
 class TestController {
 
-    @RequestMapping("/welcome")
-    fun welcomepage(): ResponseEntity<AuthorizationResponse> {
-        val map = HashMap<String, String>()
-        map["key"] = "value"
-        map["foo"] = "bar"
-        map["aa"] = "bb"
-        val response = AuthorizationResponse(null,
-            null, "99", "Código de comercio o número de terminal incorrecto")
-        return ResponseEntity<AuthorizationResponse>(response, HttpStatus.OK)
+    @RequestMapping("/")
+    fun welcomepage(): String {
+        return "Hello Docker World"
     }
 }
 

@@ -4,6 +4,7 @@ import com.credibanco.smartpos.payment.dto.AnnulmentRequest
 import com.credibanco.smartpos.payment.dto.AnnulmentResponse
 import com.credibanco.smartpos.payment.dto.AuthorizationRequest
 import com.credibanco.smartpos.payment.dto.AuthorizationResponse
+import org.springframework.core.env.Environment
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -14,9 +15,19 @@ import java.util.*
 @RestController
 class TestController {
 
+    private var env = System.getProperties()
+    private var dir = System.getProperty("user.dir")
+    private val catalinaBase = System.getProperty("catalina.base")
+    private val osName = System.getProperty("os.name")
+
     @RequestMapping("/")
     fun welcomepage(): String {
         return "Hello Docker World"
+    }
+
+    @RequestMapping("/docker")
+    fun docker(): MutableList<String> {
+        return mutableListOf(dir, catalinaBase, osName)
     }
 }
 

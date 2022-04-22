@@ -1,24 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-deployment
+  name: server-deployment
   labels:
-    app: test
+    app: server
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: test
+      app: server
   template:
     metadata:
       labels:
-        app: test
+        app: server
     spec:
       containers:
-      - name: test
-        image: diegoguerreroborda/test:latest
+      - name: server
+        image: diegoguerreroborda/server-docker
         ports:
-        - containerPort: 5000
+        - containerPort: 8080
 
 # kubectl apply -f .\k8s\deployment.yaml
 # kubectl get pods
+
+#Para borrar kubectl delete --all deployments

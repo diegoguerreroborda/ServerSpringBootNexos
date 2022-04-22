@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: server-service
+spec:
+  type: LoadBalancer
+  externalIPs:
+    - 192.168.0.10
+  selector:
+    app: server
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+    name: grpc
+status:
+  loadBalancer:
+    ingress:
+    - ip: 127.0.0.1
+
+# kubectl apply -f .\k8s\service.yaml
+# kubectl get svc
+# kubectl describe services
+# minikube.exe dashboard -> arroja la dashboard en el navegador
+#Cuando se queda <pending> services agregar -> minikube.exe tunnel

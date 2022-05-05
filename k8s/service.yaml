@@ -20,6 +20,6 @@ status:
 
 # kubectl apply -f .\k8s\service.yaml
 # kubectl get svc
-# kubectl describe services
+# kubectl describe svc <name>
 # minikube.exe dashboard -> arroja la dashboard en el navegador
 #Cuando se queda <pending> services agregar -> minikube.exe tunnel

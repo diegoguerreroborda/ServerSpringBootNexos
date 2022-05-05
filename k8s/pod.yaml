@@ -8,12 +8,28 @@ spec:
   containers:
   - name: server
     image: diegoguerreroborda/server-docker
+    env:
+    - name: HOST_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
+    readinessProbe:
+      httpGet:
+        path: /kbs
+        port: 8080
+      initialDelaySeconds: 5
+    livenessProbe:
+      tcpSocket:
+        port: 8080
+      initialDelaySeconds: 15
+      periodSeconds: 20
     ports:
       - containerPort: 8080
 
 
 # kubectl apply -f .\k8s\pod.yaml
 # kubectl get pods
+# kubectl get pods -o wide
 
 # kubectl logs test-pod
 
